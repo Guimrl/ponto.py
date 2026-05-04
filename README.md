@@ -1,6 +1,7 @@
 # 🕐 Calculadora de Horas Trabalhadas
 
-Script simples em Python para calcular o total de horas trabalhadas a partir dos registros de ponto.
+Script simples em Python para calcular o total de horas trabalhadas a partir dos registros de ponto do dia.
+O projeto resolve um problema simples, a minha preguiça de calcular quantas horas eu trabalhei no dia.
 
 ## Como usar
 
@@ -37,7 +38,5 @@ Script simples em Python para calcular o total de horas trabalhadas a partir dos
 - Os horários devem estar no formato `hh:mm:ss`
 - Insira os horários em pares (entrada e saída)
 - Caso haja um horário sem par, será exibido `[Falta saída]`
-- Os horários devem estar no formato `hh:mm:ss`
-- Insira os horários em pares (entrada e saída)
 - Caso haja um horário sem par, será exibido `[Falta saída]`
 - Caso haja um horário sem par, será exibido `[Falta saída]`
