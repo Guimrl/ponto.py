@@ -3,9 +3,9 @@ from datetime import datetime
 
 def calculate_hours():
     print("--- Calculadora de Horas Trabalhadas ---")
-    text = input("Insira os dados do ponto aqui:\nex: hh:mm:ss hh:mm:ss\n> ")
+    text = input("Insira os dados do ponto aqui:\nex: hh:mm ou hh:mm:ss\n> ")
     
-    times = re.findall(r'(\d{2}:\d{2}:\d{2})', text)
+    times = re.findall(r'(\d{2}:\d{2}(?::\d{2})?)', text)
     
     if not times:
         print("Nenhum horário encontrado. Verifique o formato.")
@@ -13,17 +13,20 @@ def calculate_hours():
 
     times.sort()
     
-    fmt = '%H:%M:%S'
     total_seconds = 0
     
+    def parse_time(t):
+        fmt = '%H:%M:%S' if len(t) == 8 else '%H:%M'
+        return datetime.strptime(t, fmt)
+
     print("\nResumo do dia:")
     for i in range(0, len(times), 2):
         try:
             start_str = times[i]
             end_str = times[i+1]
             
-            start = datetime.strptime(start_str, fmt)
-            end = datetime.strptime(end_str, fmt)
+            start = parse_time(start_str)
+            end = parse_time(end_str)
             
             diff = (end - start).total_seconds()
             total_seconds += diff
