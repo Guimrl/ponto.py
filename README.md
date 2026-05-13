@@ -20,6 +20,7 @@ O projeto resolve um problema simples, a minha preguiça de calcular quantas hor
    ```
 
 3. O script exibirá o resumo do dia e o total trabalhado:
+
    ```
    Resumo do dia:
      08:00:00 -> 12:00:00 | Subtotal: 04h 00m
@@ -37,6 +38,4 @@ O projeto resolve um problema simples, a minha preguiça de calcular quantas hor
 
 - Os horários devem estar no formato `hh:mm:ss`
 - Insira os horários em pares (entrada e saída)
-- Caso haja um horário sem par, será exibido `[Falta saída]`
-- Caso haja um horário sem par, será exibido `[Falta saída]`
 - Caso haja um horário sem par, será exibido `[Falta saída]`
