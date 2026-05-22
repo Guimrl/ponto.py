@@ -14,11 +14,12 @@ def enterMarcacoes():
    senha = input("Digite sua senha do EasyMOB\n")
    # login = os.getenv('login')
    # senha = os.getenv('senha')
+   empresa = os.getenv('empresa')
 
    driver = webdriver.Chrome()
    driver.get("https://easymob.metadados.com.br/Account/LoginColaborador")
 
-   driver.find_element(By.ID, "chave").send_keys("gvdasa")
+   driver.find_element(By.ID, "chave").send_keys(empresa)
    driver.find_element(By.ID, "usuario").send_keys(login)
    driver.find_element(By.ID, "senha").send_keys(senha)
    driver.find_element(By.ID, "btnLogin").click()
