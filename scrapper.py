@@ -6,12 +6,13 @@ from selenium.webdriver.support import expected_conditions as EC
 import os
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
+import getpass
 
 def enterMarcacoes():
    load_dotenv()
 
    login = input("Digite seu login do EasyMOB\n")
-   senha = input("Digite sua senha do EasyMOB\n")
+   senha = getpass.getpass("Digite sua senha do EasyMOB\n")
    # login = os.getenv('login')
    # senha = os.getenv('senha')
    empresa = os.getenv('empresa')
@@ -39,7 +40,7 @@ def getLastMonth():
 
       if "/" in rows[i].text and (rows[i].text != dias[-1]["dia"]):
          dias.append({
-               "dia": rows[i].text, 
+               "dia": rows[i].text,
                "horarios": [rows[i+1].text.split(":")[0] + ":" + rows[i+1].text.split(":")[1]]
             })
       if ":" in rows[i].text:
@@ -50,23 +51,23 @@ def getLastMonth():
    dias.pop(0)
    for d in dias:
       print(d)
-   
+
    driver.quit()
 
 def getToday():
    driver = enterMarcacoes()
    dia = datetime.now().strftime("%d/%m/%Y")
    hojeElements = WebDriverWait(driver, 5).until(EC.presence_of_all_elements_located((By.XPATH, f"//tr/td[contains(text(), '{dia}')]/..")))
-   
+
    horarios = []
    for he in hojeElements:
       horarios.append(he.find_element(By.XPATH, "./td[contains(text(), ':')]").text)
-   
+
    horarios.sort()
 
    print("Hoje você bateu o ponto às: ")
    for h in horarios:
       print("-> " + h)
-   
+
    driver.quit()
    # return horarios
