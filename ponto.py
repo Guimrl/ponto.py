@@ -10,15 +10,15 @@ def parse_time(t):
 def calculate_hours():
     print("--- Calculadora de Horas Trabalhadas ---")
     text = input("Insira os dados do ponto aqui:\nex: hh:mm ou hh:mm:ss\n> ")
-    
+
     times = re.findall(r'(\d{2}:\d{2}(?::\d{2})?)', text)
-    
+
     if not times:
         print("Nenhum horário encontrado. Verifique o formato.")
         return
 
     times.sort()
-    
+
     total_seconds = 0
 
     print("\nResumo do dia:")
@@ -26,22 +26,22 @@ def calculate_hours():
         try:
             start_str = times[i]
             end_str = times[i+1]
-            
+
             start = parse_time(start_str)
             end = parse_time(end_str)
-            
+
             diff = (end - start).total_seconds()
             total_seconds += diff
-            
+
             print(f"  {start_str} -> {end_str} | Subtotal: {int(diff//3600):02d}h {int((diff%3600)//60):02d}m")
-            
+
         except IndexError:
             print(f"{times[i]} -> [Falta saída]")
 
     hours = int(total_seconds // 3600)
     minutes = int((total_seconds % 3600) // 60)
     seconds = int(total_seconds % 60)
-    
+
     print("-" * 30)
     print(f"TOTAL TRABALHADO: {hours:02d}:{minutes:02d}:{seconds:02d}")
     print("-" * 30)
@@ -57,7 +57,9 @@ def suggest_exit_time():
             return int(parts[0]) * 3600 + int(parts[1]) * 60 + int(parts[2])
         return None
 
-    target_str = input("Meta de horas a cumprir (ex: 8:45): ").strip()
+    target_str = input("Meta de horas a cumprir (ex: 8:45) [padrão: 08:45]: ").strip()
+    if not target_str:
+        target_str = "08:45"
     target_seconds = parse_duration(target_str)
     if target_seconds is None:
         print("Formato inválido. Use hh:mm ou hh:mm:ss.")
