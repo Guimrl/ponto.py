@@ -1,5 +1,6 @@
 import re
 from datetime import datetime, timedelta
+from scrapper import getToday
 
 
 def parse_time(t):
@@ -124,7 +125,8 @@ def menu():
         print("        SISTEMA DE CONTROLE DE PONTO    ")
         print("========================================")
         print("  1. Calcular horas trabalhadas")
-        print("  2. Sugerir horário de saída")
+        print("  2. Buscar horas trabalhadas automaticamente")
+        print("  3. Sugerir horário de saída")
         print("  0. Sair")
         print("----------------------------------------")
         choice = input("Escolha uma opção: ").strip()
@@ -132,6 +134,8 @@ def menu():
         if choice == "1":
             calculate_hours()
         elif choice == "2":
+            getToday()
+        elif choice == "3":
             suggest_exit_time()
         elif choice == "0":
             print("Encerrando o programa. Até logo!")
